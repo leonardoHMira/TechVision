@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="/img/sfundo.png">
+  <title>JDLtechvision - Home</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    /* Estilos personalizados */
+    body {
+      font-family: 'Inter', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1020;
+    }
+    .nav-link.active {
+      font-weight: bold;
+      border-bottom: 2px solid #007bff;
+      color: #ffffff !important;
+    }
+
+    .hero {
+      background: linear-gradient(90deg, #000000, #4c669f);
+      color: white;
+      padding: 4rem 2rem;
+    }
+
+    .hero .hero-content {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-text {
+      flex: 1;
+      max-width: 500px;
+    }
+
+    .hero-text h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+
+    .hero-text p {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+    }
+
+    .hero-img {
+      flex: 1;
+      max-width: 500px;
+    }
+
+    .hero-img img {
+      width: 100%;
+    }
+
+    .btn-cta {
+      background-color: #007bff;
+      border: none;
+      font-weight: bold;
+    }
+
+    .btn-cta:hover {
+      background-color: #0056b3;
+    }
+
+    .features {
+      padding: 4rem 2rem;
+    }
+
+    .feature-box {
+      text-align: center;
+      padding: 1.5rem;
+      border-radius: 10px;
+      background-color: #f8f9fa;
+    }
+
+    .feature-box h4 {
+      margin-top: 1rem;
+    }
+
+    .metrics {
+      padding: 4rem 2rem;
+      background-color: #f0f0f0;
+    }
+
+    .metric-card {
+      text-align: center;
+      padding: 2rem;
+      border-radius: 10px;
+      background-color: white;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .metric-card h3 {
+      font-size: 2.5rem;
+      color: #007bff;
+    }
+
+    footer {
+      background-color: #1e2a38;
+      color: #fff;
+      padding: 3rem 1rem;
+    }
+
+    footer .social-icons a {
+      color: white;
+      font-size: 1.5rem;
+      margin: 0 0.5rem;
+      transition: color 0.3s;
+    }
+
+    footer .social-icons a:hover {
+      color: #007bff;
+    }
+
+    .contact-bar {
+      bottom: 0;
+      width: 100%;
+      background-color: #007bff;
+      color: white;
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1030;
+    }
+
+    .contact-bar a {
+      color: white;
+      font-weight: bold;
+      margin-left: 1rem;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .contact-bar a:hover {
+      color: #fdfdfd;
+    }
+
+    .features,
+    .metrics {
+      padding: 4rem 2rem;
+    }
+
+    .feature-box,
+    .metric-card {
+      text-align: center;
+      padding: 2rem;
+      border-radius: 10px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      background-color: #f8f9fa;
+    }
+
+    .feature-box:hover,
+    .metric-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Botão flutuante do WhatsApp */
+    .whatsapp-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25d366;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+      z-index: 1040;
+    }
+
+    .whatsapp-btn:hover {
+      transform: scale(1.1);
+    }
+
+    /* Botão de subir */
+    .back-to-top {
+      position: fixed;
+      bottom: 85px;
+      right: 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+      z-index: 1039;
+    }
+
+    .back-to-top:hover {
+      transform: scale(1.1);
+    }
+
+    @media (max-width: 768px) {
+      .whatsapp-btn {
+        bottom: 100px;
+      }
+
+      .back-to-top {
+        bottom: 40px;
+      }
+    }
+
+    .faq {
+      background-color: #f8f9fa;
+      padding: 60px 20px;
+    }
+
+    .faq h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .faq .accordion-button {
+      background-color: #007bff;
+      color: white;
+      font-weight: bold;
+      border: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .faq .accordion-button:hover {
+      background-color: #0056b3;
+    }
+
+    .faq .accordion-button:not(.collapsed) {
+      background-color: #0056b3;
+      color: white;
+      box-shadow: inset 0 -2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .faq .accordion-item {
+      border: none;
+      margin-bottom: 10px;
+    }
+
+    .faq .accordion-body {
+      background-color: #fff;
+      color: #6c757d;
+      padding: 20px;
+      border: 1px solid #e9ecef;
+      border-top: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
+    <div class="container">
+      <a class="navbar-brand" href="#">JDLtechvision</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="home.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="servico.html">Projetos</a></li>
+          <li class="nav-item"><a class="nav-link" href="sobre.html">Sobre</a></li>
+          <li class="nav-item"><a class="nav-link" href="contato.html">Contato</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1 id="typewriter"></h1>
+          <p>Ajudamos sua empresa a alcançar o próximo nível com soluções tecnológicas personalizadas.</p>
+          <a href="#services" class="btn btn-cta mt-3">Conheça nossos serviços</a>
+        </div>
+        <div class="hero-img">
+          <img src="/img/capa.jpg" alt="Imagem Hero">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features" id="services">
+    <div class="container">
+      <div class="row text-center mb-5">
+        <h2 class="fw-bold text-primary">O que oferecemos</h2>
+        <p class="text-muted">Soluções tecnológicas inovadoras para transformar, otimizar e proteger o seu negócio.</p>
+      </div>
+      <div class="row g-4">
+        <!-- Card 1 -->
+        <div class="col-md-4">
+          <div class="feature-box">
+            <i class="bi bi-code-slash fs-1 text-primary"></i>
+            <h4>Desenvolvimento de Software</h4>
+            <p>Criamos softwares personalizados e escaláveis, alinhados às necessidades específicas do seu negócio.</p>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="col-md-4">
+          <div class="feature-box">
+            <i class="bi bi-phone fs-1 text-primary"></i>
+            <h4>Desenvolvimento de Aplicativos Mobile</h4>
+            <p>Desenvolvemos aplicativos Android e iOS de alta performance, com foco em usabilidade e inovação.</p>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="col-md-4">
+          <div class="feature-box">
+            <i class="bi bi-diagram-3 fs-1 text-primary"></i>
+            <h4>Dimensionamento de Redes e Infraestruturas</h4>
+            <p>Projetamos redes robustas e infraestruturas escaláveis para garantir conectividade e eficiência.</p>
+          </div>
+        </div>
+        <!-- Card 4 -->
+        <div class="col-md-4">
+          <div class="feature-box">
+            <i class="bi bi-camera fs-1 text-primary"></i>
+            <h4>Projetos Industriais de Câmeras</h4>
+            <p>Implementamos sistemas de câmeras industriais para monitoramento, segurança e automação avançada.</p>
+          </div>
+        </div>
+        <!-- Card 5 -->
+        <div class="col-md-4">
+          <div class="feature-box">
+            <i class="bi bi-cpu fs-1 text-primary"></i>
+            <h4>Projetos Industriais com CLP e Automação</h4>
+            <p>Desenvolvemos soluções com CLP e automação industrial para otimizar processos e aumentar a produtividade.</p>
+          </div>
+        </div>
+        <!-- Card 6 -->
+        <div class="col-md-4">
+          <div class="feature-box">
+            <i class="bi bi-headset fs-1 text-primary"></i>
+            <h4>Suporte Técnico para Computadores e Redes</h4>
+            <p>Oferecemos suporte técnico especializado para manter seus sistemas e redes funcionando sem interrupções.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Bar -->
+  <section class="contact-bar">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h3>Conheça nossos Projetos Realizados <a href="contato.html" class="btn btn-primary">Projetos</a></h3>
+          <p>Nós estamos à disposição para trazer solução para sua empresa.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq py-5">
+    <div class="container">
+      <div class="row text-center mb-5">
+        <h2 class="fw-bold text-primary">Perguntas Frequentes <i class="bi bi-question-circle text-primary"></i></h2>
+        <p class="text-muted"> jeune respostas rápidas para suas dúvidas sobre nossos serviços e soluções.</p>
+      </div>
+      <div class="accordion" id="faqAccordion">
+        <!-- Pergunta 1 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+              Quais tipos de software a JDLtechvision pode desenvolver para minha empresa?
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Desenvolvemos softwares personalizados, incluindo sistemas de gestão, plataformas web, e soluções embarcadas, adaptados às necessidades do seu negócio. Nossa equipe utiliza tecnologias modernas para garantir desempenho e escalabilidade. Entre em contato para discutir seu projeto!
+            </div>
+          </div>
+        </div>
+        <!-- Pergunta 2 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Vocês criam aplicativos mobile para quais plataformas?
+            </button>
+          </h2>
+          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Criamos aplicativos de alta performance para Android e iOS, com design intuitivo e funcionalidades sob medida. Seja para engajar clientes ou otimizar processos internos, entregamos soluções mobile confiáveis e inovadoras.
+            </div>
+          </div>
+        </div>
+        <!-- Pergunta 3 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              Como a JDLtechvision garante a segurança e eficiência das redes que projeta?
+            </button>
+          </h2>
+          <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Nossos projetos de dimensionamento de redes e infraestruturas seguem padrões de alta segurança, com firewalls, criptografia e monitoramento proativo. Planejamos redes escaláveis para suportar o crescimento do seu negócio com máxima eficiência.
+            </div>
+          </div>
+        </div>
+        <!-- Pergunta 4 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingFour">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+              Os projetos de câmeras industriais são personalizáveis para diferentes setores?
+            </button>
+          </h2>
+          <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Sim, nossos projetos de câmeras industriais são adaptados de acordo com planta e necessidades da sua empresa. Desde instalação até orçamento, tudo personalizado para suas necessidades específicas.
+            </div>
+          </div>
+        </div>
+        <!-- Pergunta 5 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingFive">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+              O que envolve um projeto de automação industrial com CLP na JDLtechvision?
+            </button>
+          </h2>
+          <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Nossos projetos com CLP (Controladores Lógicos Programáveis) e automação industrial otimizam processos produtivos, reduzindo custos e aumentando a eficiência. Desde o design até a implementação, oferecemos soluções integradas com suporte contínuo.
+            </div>
+          </div>
+        </div>
+        <!-- Pergunta 6 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingSix">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+              Como funciona o suporte técnico para computadores e redes da JDLtechvision?
+            </button>
+          </h2>
+          <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Oferecemos suporte técnico especializado, com atendimento rápido para resolver problemas em computadores e redes. Nosso serviço inclui manutenção preventiva, diagnósticos e soluções personalizadas para garantir a continuidade do seu negócio.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="features bg-light">
+    <div class="container">
+      <div class="row text-center mb-5">
+        <h2>O que nossos clientes dizem</h2>
+      </div>
+      <div id="testimonialsCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner text-center">
+          <div class="carousel-item active">
+            <p class="fs-5">"A JDLtechvision transformou nossa infraestrutura digital. Recomendo muito!"</p>
+            <small>- João Silva</small>
+          </div>
+          <div class="carousel-item">
+            <p class="fs-5">"Equipe ágil e profissional, entregaram o projeto antes do prazo."</p>
+            <small>- Maria Oliveira</small>
+          </div>
+          <div class="carousel-item">
+            <p class="fs-5">"Excelência em cada detalhe. Não poderia estar mais satisfeito!"</p>
+            <small>- Pedro Santos</small>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#testimonialsCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#testimonialsCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Bar -->
+  <section class="contact-bar">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2>Entre em Contato <a href="contato.html" class="btn btn-primary">Fale Conosco</a></h2>
+          <p>Nós estamos à disposição para esclarecer dúvidas, solicitar ajuda ou enviar feedback sobre nossos produtos ou serviços.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Botão WhatsApp -->
+  <a href="https://wa.me/5517981566351" target="_blank" class="whatsapp-btn" title="Fale conosco pelo WhatsApp">
+    <i class="bi bi-whatsapp"></i>
+  </a>
+
+  <!-- Botão Voltar ao Topo -->
+  <button class="back-to-top" id="backToTop" title="Voltar ao topo">
+    <i class="bi bi-arrow-up"></i>
+  </button>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-light py-4">
+    <div class="container">
+      <div class="row">
+        <!-- Coluna Sobre Nós -->
+        <div class="col-md-4">
+          <h5>Sobre Nós</h5>
+          <p>JDLtechvision é líder em soluções tecnológicas personalizadas. Inovamos para transformar seu negócio.</p>
+        </div>
+        <!-- Coluna Links Úteis -->
+        <div class="col-md-4">
+          <h5>Links Úteis</h5>
+          <ul class="list-unstyled">
+            <li><a href="privacidade.html" class="text-white text-decoration-none">Política de Privacidade</a></li>
+            <li><a href="termos.html" class="text-white text-decoration-none">Termos de Serviço</a></li>
+          </ul>
+        </div>
+        <!-- Coluna Redes Sociais -->
+        <div class="col-md-4">
+          <h5>Redes Sociais</h5>
+          <div class="d-flex gap-3">
+            <a href="https://www.instagram.com/jdltechvision/" class="text-white fs-4"><i class="bi bi-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+      <!-- Linha de Divisão -->
+      <hr class="my-4 border-light">
+      <!-- Direitos Autorais -->
+      <div class="text-center">
+        <p class="mb-0">© 2025 JDLtechvision. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Typewriter Effect
+    const typewriter = document.getElementById('typewriter');
+    const text = "Soluções Inteligentes para o Futuro";
+    let i = 0;
+
+    function typeWriterEffect() {
+      if (i < text.length) {
+        typewriter.innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriterEffect, 100);
+      }
+    }
+    typeWriterEffect();
+
+    // Mostrar/esconder botão de voltar ao topo
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTop.style.display = 'flex';
+      } else {
+        backToTop.style.display = 'none';
+      }
+    });
+
+    // Scroll suave ao clicar no botão de voltar ao topo
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

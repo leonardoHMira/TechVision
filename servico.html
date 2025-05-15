@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JDLtechvision - Projetos</title>
+  <link rel="icon" type="image/x-icon" href="/img/sfundo.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    /* Estilos personalizados */
+    body {
+      font-family: 'Inter', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1020;
+    }
+    .nav-link.active {
+      font-weight: bold;
+      border-bottom: 2px solid #007bff;
+      color: #ffffff !important;
+    }
+
+    .hero {
+      background: linear-gradient(90deg, #000000, #4c669f);
+      color: white;
+      padding: 4rem 2rem;
+    }
+
+    .hero .hero-content {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-text {
+      flex: 1;
+      max-width: 500px;
+    }
+
+    .hero-text h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+
+    .hero-text p {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+    }
+
+    .hero-img {
+      flex: 1;
+      max-width: 500px;
+    }
+
+    .hero-img img {
+      width: 100%;
+    }
+
+    .btn-cta {
+      background-color: #007bff;
+      border: none;
+      font-weight: bold;
+    }
+
+    .btn-cta:hover {
+      background-color: #0056b3;
+    }
+
+    .features {
+      padding: 4rem 2rem;
+    }
+
+    .feature-box {
+      text-align: center;
+      padding: 1.5rem;
+      border-radius: 10px;
+      background-color: #f8f9fa;
+    }
+
+    .feature-box h4 {
+      margin-top: 1rem;
+    }
+
+    .metrics {
+      padding: 4rem 2rem;
+      background-color: #f0f0f0;
+    }
+
+    .metric-card {
+      text-align: center;
+      padding: 2rem;
+      border-radius: 10px;
+      background-color: white;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .metric-card h3 {
+      font-size: 2.5rem;
+      color: #007bff;
+    }
+
+    footer {
+      background-color: #1e2a38;
+      color: #fff;
+      padding: 3rem 1rem;
+    }
+
+    footer .social-icons a {
+      color: white;
+      font-size: 1.5rem;
+      margin: 0 0.5rem;
+      transition: color 0.3s;
+    }
+
+    footer .social-icons a:hover {
+      color: #007bff;
+    }
+
+    .contact-bar {
+      bottom: 0;
+      width: 100%;
+      background-color: #007bff;
+      color: white;
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1030;
+    }
+
+    .contact-bar a {
+      color: white;
+      font-weight: bold;
+      margin-left: 1rem;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .contact-bar a:hover {
+      color: #fdfdfd;
+    }
+
+    .features,
+    .metrics {
+      padding: 4rem 2rem;
+    }
+
+    .feature-box,
+    .metric-card {
+      text-align: center;
+      padding: 2rem;
+      border-radius: 10px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      background-color: #f8f9fa;
+    }
+
+    .feature-box:hover,
+    .metric-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Botão flutuante do WhatsApp */
+    .whatsapp-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25d366;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+      z-index: 1040;
+    }
+
+    .whatsapp-btn:hover {
+      transform: scale(1.1);
+    }
+
+    /* Botão de subir */
+    .back-to-top {
+      position: fixed;
+      bottom: 85px;
+      right: 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+      z-index: 1039;
+    }
+
+    .back-to-top:hover {
+      transform: scale(1.1);
+    }
+
+    .card-item {
+      position: relative;
+      background: #2c2c2c;
+      border-radius: 15px;
+      padding: 20px 10px;
+      overflow: hidden;
+      height: 180px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .card-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.5);
+    }
+
+    .card-hover {
+      position: absolute;
+      bottom: -50%;
+      left: 50%;
+      transform: translate(-50%, 0);
+      text-align: center;
+      background: rgba(0, 0, 0, 0.85);
+      color: #fff;
+      padding: 10px 15px;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+      opacity: 0;
+    }
+
+    .card-item:hover .card-hover {
+      bottom: 20px;
+      opacity: 1;
+    }
+
+    .icon {
+      width: 70px;
+      height: 70px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem;
+    }
+
+    .card-item h5 {
+      margin-top: 15px;
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+
+    .services .list-group-item {
+      cursor: pointer;
+      transition: background-color 0.3s;
+      display: flex;
+      align-items: center;
+    }
+
+    .services .list-group-item:hover {
+      background-color: #e9ecef;
+    }
+
+    .services .list-group-item.active {
+      background-color: #007bff;
+      border-color: #007bff;
+      color: white;
+    }
+
+    .services img {
+      max-height: 400px;
+      max-width: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+      width: 100%;
+      height: auto;
+    }
+
+    /* Responsividade para dispositivos menores */
+    @media (max-width: 768px) {
+      .hero-text h1 {
+        font-size: 1.8rem;
+      }
+
+      .hero-text p {
+        font-size: 1rem;
+      }
+
+      .features,
+      .metrics,
+      .workflow,
+      .services {
+        padding: 2rem 1rem;
+      }
+
+      .feature-box,
+      .metric-card,
+      .card-item {
+        padding: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .card-item {
+        height: 150px;
+      }
+
+      .card-item h5 {
+        font-size: 0.9rem;
+      }
+
+      .card-hover p {
+        font-size: 0.8rem;
+      }
+
+      .services .list-group {
+        margin-bottom: 2rem;
+      }
+
+      .services img {
+        max-height: 300px;
+      }
+
+      .services h3 {
+        font-size: 1.5rem;
+      }
+
+      .services p {
+        font-size: 0.9rem;
+      }
+
+      .contact-bar h2 {
+        font-size: 1.2rem;
+      }
+
+      .contact-bar p {
+        font-size: 0.8rem;
+      }
+
+      .whatsapp-btn {
+        bottom: 80px;
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+      }
+
+      .back-to-top {
+        bottom: 20px;
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+      }
+
+      footer {
+        padding: 2rem 1rem;
+      }
+
+      footer h5 {
+        font-size: 1rem;
+      }
+
+      footer p,
+      footer a {
+        font-size: 0.8rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .hero {
+        padding: 2rem 1rem;
+      }
+
+      .hero-text h1 {
+        font-size: 1.5rem;
+      }
+
+      .hero-text p {
+        font-size: 0.9rem;
+      }
+
+      .workflow h2 {
+        font-size: 1.5rem;
+      }
+
+      .workflow p {
+        font-size: 0.9rem;
+      }
+
+      .features h2 {
+        font-size: 1.5rem;
+      }
+
+      .features p {
+        font-size: 0.9rem;
+      }
+
+      .services img {
+        max-height: 200px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">JDLtechvision</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="servico.html">Projetos</a></li>
+          <li class="nav-item"><a class="nav-link" href="sobre.html">Sobre</a></li>
+          <li class="nav-item"><a class="nav-link active" href="contato.html">Contato</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Workflow Section -->
+  <section class="workflow py-5 bg-dark text-light">
+    <div class="container">
+      <div class="row text-center mb-5">
+        <h2 class="fw-bold">Etapas do <span class="text-primary">Desenvolvimento de Projetos</span></h2>
+        <p class="text-muted">
+          Nosso processo é planejado para entregar soluções tecnológicas seguras e confiáveis, com suporte completo em todas as fases.
+        </p>
+      </div>
+      <div class="row">
+        <!-- Reunião Inicial -->
+        <div class="col-md-4 mb-4">
+          <div class="card-item position-relative text-center">
+            <div class="icon bg-primary text-white rounded-circle mx-auto d-flex align-items-center justify-content-center">
+              <i class="bi bi-people-fill"></i>
+            </div>
+            <h5 class="mt-3">Reunião Inicial</h5>
+            <div class="card-hover">
+              <p>Entendemos suas necessidades e traçamos um plano estratégico para atender aos objetivos do projeto.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Visão e Planejamento -->
+        <div class="col-md-4 mb-4">
+          <div class="card-item position-relative text-center">
+            <div class="icon bg-success text-white rounded-circle mx-auto d-flex align-items-center justify-content-center">
+              <i class="bi bi-lightbulb-fill"></i>
+            </div>
+            <h5 class="mt-3">Planejamento</h5>
+            <div class="card-hover">
+              <p>Criamos um cronograma detalhado, definindo prazos, entregáveis e recursos necessários.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Desenvolvimento -->
+        <div class="col-md-4 mb-4">
+          <div class="card-item position-relative text-center">
+            <div class="icon bg-warning text-white rounded-circle mx-auto d-flex align-items-center justify-content-center">
+              <i class="bi bi-code-slash"></i>
+            </div>
+            <h5 class="mt-3">Desenvolvimento</h5>
+            <div class="card-hover">
+              <p>Transformamos ideias em realidade, aplicando as melhores práticas de codificação e tecnologia.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Testes e Validação -->
+        <div class="col-md-4 mb-4">
+          <div class="card-item position-relative text-center">
+            <div class="icon bg-danger text-white rounded-circle mx-auto d-flex align-items-center justify-content-center">
+              <i class="bi bi-bug-fill"></i>
+            </div>
+            <h5 class="mt-3">Testes</h5>
+            <div class="card-hover">
+              <p>Realizamos testes rigorosos para garantir a segurança, funcionalidade e performance do sistema.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Implantação -->
+        <div class="col-md-4 mb-4">
+          <div class="card-item position-relative text-center">
+            <div class="icon bg-info text-white rounded-circle mx-auto d-flex align-items-center justify-content-center">
+              <i class="bi bi-cloud-upload-fill"></i>
+            </div>
+            <h5 class="mt-3">Implantação</h5>
+            <div class="card-hover">
+              <p>Colocamos o sistema em operação com segurança, treinando sua equipe para o uso eficiente.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Suporte Contínuo -->
+        <div class="col-md-4 mb-4">
+          <div class="card-item position-relative text-center">
+            <div class="icon bg-secondary text-white rounded-circle mx-auto d-flex align-items-center justify-content-center">
+              <i class="bi bi-headset"></i>
+            </div>
+            <h5 class="mt-3">Suporte e Amparo</h5>
+            <div class="card-hover">
+              <p>Oferecemos suporte contínuo, garantindo a confiabilidade e evolução do sistema ao longo do tempo.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="services py-5 bg-light">
+    <div class="container">
+      <div class="row">
+        <!-- Lista de Serviços -->
+        <div class="col-md-4">
+          <h4 class="mb-4 fw-bold text-primary"><i class="bi bi-tools me-2"></i>Nossos Projetos</h4>
+          <ul class="list-group" id="serviceList">
+            <li class="list-group-item active" data-service="1"><i class="bi bi-laptop me-1"></i>Desenvolvimento de Software</li>
+            <li class="list-group-item" data-service="2"><i class="bi bi-phone me-1"></i>Desenvolvimento de Aplicativos Mobile</li>
+            <li class="list-group-item" data-service="3"><i class="bi bi-diagram-3 me-1"></i>Dimensionamento de Redes e Infraestruturas</li>
+            <li class="list-group-item" data-service="4"><i class="bi bi-camera-video me-1"></i>Projetos Industriais de Câmeras</li>
+            <li class="list-group-item" data-service="5"><i class="bi bi-gear-wide me-1"></i>Projetos Industriais com CLP e Automação</li>
+            <li class="list-group-item" data-service="6"><i class="bi bi-wifi me-1"></i>Suporte Técnico para Computadores e Redes</li>
+          </ul>
+        </div>
+        <!-- Área de Visualização -->
+        <div class="col-md-8">
+          <div id="service-display" class="text-center">
+            <img src="img/sistem.jpeg" alt="Imagem representando um sistema de checklist de qualidade" id="service-image" class="img-fluid mb-4">
+            <h3 id="service-title">Sistema de Checklist de Qualidade</h3>
+            <p id="service-description">Desenvolvemos um sistema personalizado para controle de qualidade, automatizando inspeções e gerando relatórios detalhados, aumentando a eficiência e a precisão.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="features bg-light">
+    <div class="container">
+      <div class="row text-center mb-5">
+        <h2 class="fw-bold text-primary">O que nossos clientes dizem</h2>
+      </div>
+      <div id="testimonialsCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner text-center">
+          <div class="carousel-item active">
+            <p class="fs-5">"A JDLtechvision transformou nossa infraestrutura digital. Recomendo muito!"</p>
+            <small>- João Silva</small>
+          </div>
+          <div class="carousel-item">
+            <p class="fs-5">"Equipe ágil e profissional, entregaram o projeto antes do prazo."</p>
+            <small>- Maria Oliveira</small>
+          </div>
+          <div class="carousel-item">
+            <p class="fs-5">"Excelência em cada detalhe. Não poderia estar mais satisfeito!"</p>
+            <small>- Pedro Santos</small>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#testimonialsCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#testimonialsCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Próximo</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Bar -->
+  <section class="contact-bar">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2>Entre em Contato <a href="contato.html" class="btn btn-primary"><i class="bi bi-chat-dots me-1"></i>Fale Conosco</a></h2>
+          <p>Nós estamos à disposição para esclarecer dúvidas, solicitar ajuda ou enviar feedback sobre nossos produtos ou serviços.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Botão WhatsApp -->
+  <a href="https://wa.me/5517981566351" target="_blank" class="whatsapp-btn" title="Fale conosco pelo WhatsApp">
+    <i class="bi bi-whatsapp"></i>
+  </a>
+
+  <!-- Botão Voltar ao Topo -->
+  <button class="back-to-top" id="backToTop" title="Voltar ao topo">
+    <i class="bi bi-arrow-up"></i>
+  </button>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-light py-4">
+    <div class="container">
+      <div class="row">
+        <!-- Coluna Sobre Nós -->
+        <div class="col-md-4">
+          <h5>Sobre Nós</h5>
+          <p>JDLtechvision é líder em soluções tecnológicas personalizadas. Inovamos para transformar seu negócio.</p>
+        </div>
+        <!-- Coluna Links Úteis -->
+        <div class="col-md-4">
+          <h5><i class="bi bi-link-45deg me-2"></i>Links Úteis</h5>
+          <ul class="list-unstyled">
+            <li><a href="privacidade.html" class="text-white text-decoration-none">Política de Privacidade</a></li>
+            <li><a href="termos.html" class="text-white text-decoration-none">Termos de Serviço</a></li>
+          </ul>
+        </div>
+        <!-- Coluna Redes Sociais -->
+        <div class="col-md-4">
+          <h5><i class="bi bi-share me-2"></i>Redes Sociais</h5>
+          <div class="d-flex gap-3">
+            <a href="https://www.instagram.com/jdltechvision/" class="text-white fs-4"><i class="bi bi-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+      <!-- Linha de Divisão -->
+      <hr class="my-4 border-light">
+      <!-- Direitos Autorais -->
+      <div class="text-center">
+        <p class="mb-0">© 2025 JDLtechvision. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mostrar/esconder botão de voltar ao topo
+    const backToTop = document.getElementById('backToTop');
+    if (backToTop) {
+      window.addEventListener('scroll', () => {
+        backToTop.style.display = window.scrollY > 300 ? 'flex' : 'none';
+      });
+      backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
+    // Conteúdo dinâmico para cada serviço
+    const services = {
+      1: {
+        title: "Sistema de Checklist de Qualidade",
+        description: "Desenvolvemos um sistema personalizado para controle de qualidade, automatizando inspeções e gerando relatórios detalhados, aumentando a eficiência e a precisão.",
+        image: "img/sistem.jpeg",
+        alt: "Imagem representando um sistema de checklist de qualidade"
+      },
+      2: {
+        title: "Checklist de Segurança do Trabalho",
+        description: "Criamos um aplicativo mobile para checklists de segurança, facilitando a conformidade com normas trabalhistas e o monitoramento em tempo real.",
+        image: "img/mobile.jpeg",
+        alt: "Imagem representando um checklist de segurança do trabalho"
+      },
+      3: {
+        title: "Organização de Rack de Infraestrutura",
+        description: "Organizamos racks de infraestrutura com cabeamento estruturado e equipamentos otimizados, garantindo redes confiáveis e escaláveis.",
+        image: "img/rede.jpg",
+        alt: "Imagem de uma organização de rack de infraestrutura"
+      },
+      4: {
+        title: "Instalação de Câmeras Industriais",
+        description: "Implementamos sistemas de câmeras industriais para monitoramento e automação, com integração de análise de imagens para segurança e eficiência.",
+        image: "img/cam.jpeg",
+        alt: "Imagem de uma instalação de câmeras industriais"
+      },
+      5: {
+        title: "Automação de Equipamentos com CLP",
+        description: "Projetamos sistemas de automação com CLPs para equipamentos industriais, reduzindo custos operacionais e aumentando a produtividade.",
+        image: "img/clp.jpg",
+        alt: "Imagem de automação com CLP"
+      },
+      6: {
+        title: "Formatação de Computadores e Redes Wi-Fi",
+        description: "Oferecemos formatação de computadores e instalação de redes Wi-Fi dimensionadas, garantindo desempenho e conectividade para seu negócio.",
+        image: "img/suportetecnico.jpeg",
+        alt: "Imagem de suporte técnico para computadores e redes"
+      }
+    };
+
+    // Referências aos elementos
+    const serviceList = document.getElementById('serviceList');
+    const serviceImage = document.getElementById('service-image');
+    const serviceTitle = document.getElementById('service-title');
+    const serviceDescription = document.getElementById('service-description');
+
+    // Função para atualizar o conteúdo
+    function updateService(serviceId) {
+      const service = services[serviceId];
+      if (service && serviceImage && serviceTitle && serviceDescription) {
+        serviceImage.src = service.image;
+        serviceImage.alt = service.alt;
+        serviceTitle.textContent = service.title;
+        serviceDescription.textContent = service.description;
+      }
+    }
+
+    // Evento de clique nos itens da lista
+    if (serviceList) {
+      serviceList.addEventListener('click', (e) => {
+        const listItem = e.target.closest('.list-group-item');
+        if (listItem) {
+          const serviceId = listItem.getAttribute('data-service');
+          serviceList.querySelectorAll('.list-group-item').forEach(item => item.classList.remove('active'));
+          listItem.classList.add('active');
+          updateService(serviceId);
+        }
+      });
+    }
+
+    // Carregar o primeiro serviço ao iniciar
+    if (serviceList && serviceList.querySelector('.list-group-item.active')) {
+      updateService(serviceList.querySelector('.list-group-item.active').getAttribute('data-service'));
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
